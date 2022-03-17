@@ -3,6 +3,11 @@ class ListingsController < ApplicationController
     @listings = Listing.all
   end
 
+  def category
+    @listing = Listing.find(Category)
+  end
+
   def show
+    @listing = Listing.find(params[:id])
   end
 end
