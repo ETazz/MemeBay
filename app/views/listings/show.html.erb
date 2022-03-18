@@ -1,7 +1,11 @@
 <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
-       <%=image_tag "look-at-this.jpg", alt: "hand gesture", class:"card-img-top"%>
+    <%if @listing.picture.attached?%>
+      <%=image_tag @listing.picture, alt: @listing.title, class:"card-img-top"%>
+    <%else%>
+      <%=image_tag "look-at-this.jpg", alt: "hang gesture", class:"card-img-top"%>
+    <%end%>
     </div>
     <div class="col-md-8">
       <div class="card-body">
