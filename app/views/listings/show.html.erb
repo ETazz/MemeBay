@@ -14,6 +14,13 @@
         <h5 class='text-muted mb-3'>Price: <%=format_price(@listing.price)%></h5>
         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
       </div>
+      <div class ='container'>
+        <%if current_memeber && current_memeber.id == @listing.memeber_id%>
+          <div class='d-flex justify-content-equally'>
+        <%= link_to "Edit", edit_listing_path(@listing.id), class: "btn btn-warning mr-2" %>
+        <%= link_to "Delete", @listing, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+      </div>
+      <%end%>
     </div>
   </div>
 </div>
