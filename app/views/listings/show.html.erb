@@ -12,8 +12,18 @@
         <h5 class="card-title"><%=@listing.title%></h5>
         <h4 class='text-muted'>Categories: <%=@listing.category%></h4>
         <h5 class='text-muted mb-3'>Price: <%=format_price(@listing.price)%></h5>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <p><%=@listing.description%></p>
       </div>
+
+      <%if current_memeber && @listing.sold == false %>
+      <button class='btn btn-primary mb-3' data-stripe='payment'>Buy: <%=format_price(@listing.price)%></button>
+      <%elsif @listing.sold%>
+      <button class='btn btn-secondary' disabled>SOLD</button>
+      <%else%>
+      <%=button_to "Login to buy", new_memeber_session_path, class: "btn btn-info"%>
+      <%end%>
+
+
       <div class ='container'>
         <%if current_memeber && current_memeber.id == @listing.memeber_id%>
           <div class='d-flex justify-content-equally'>
@@ -24,3 +34,14 @@
     </div>
   </div>
 </div>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+document
+  .querySelector("[data-stripe='payment']")
+  .addEventListener("click", () => {
+    const stripe = Stripe("<%=Rails.application.credentials.dig(:stripe, :public_key)%>");
+    stripe.redirectToCheckout({
+      sessionId: "<%=@session_id%>"
+    })
+  })
+  </script>
