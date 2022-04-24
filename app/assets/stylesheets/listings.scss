@@ -1,3 +1,21 @@
 // Place all the styles related to the Listings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.center-form{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffe24e;
+    background-size: cover;
+    padding: 2rem;
+}
+
+.form-main-background{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color:  rgb(74, 154, 74);
+    background-size: cover;
+}
