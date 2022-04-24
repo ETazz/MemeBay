@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
   before_action :authenticate_memeber!, except: [:index, :show]
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
-  # This before caction secures listings
+  # This before action secures listings
   before_action :authorize_memeber, only: [:edit, :update, :destroy]
   before_action :set_form_vars, only: [:new, :edit]
   def index
@@ -18,6 +18,7 @@ class ListingsController < ApplicationController
       customer_email:current_memeber && current_memeber.email,
       line_items: [
         {
+          # Shows the listing information
           name: @listing.title,
           description: @listing.description,
           amount: @listing.price,
@@ -43,7 +44,7 @@ class ListingsController < ApplicationController
   def new
     @listing = Listing.new
   end
-
+# Create a new listings
   def create
     @listing = current_memeber.listings.new(listing_params)
     if @listing.save 
@@ -58,7 +59,7 @@ end
   def edit
 
   end
-
+# Updates listing
   def update
     @Listing.update(listing_params)
     if @listing.save 
@@ -69,18 +70,19 @@ end
       render "edit", notice: "Something went wrong"
   end
   end
-
+# This deletes/ destroys listed item
   def destroy
     @listing.destroy
     redirect_to listings_path, notice: "sucessfully deleted"
   end
 
+  
   private
 
   def listing_params
     params.require(:listing).permit(:title, :price, :category_id, :description, :picture)
   end
-
+#checks to see if the user is authorised to access a certain page or area of the application
   def authorize_memeber
     if @listing.memeber_id != current_memeber.id
       flash[:alert] = "You don't have permision to do that"

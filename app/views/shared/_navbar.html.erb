@@ -1,5 +1,5 @@
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-light" style="background-color: #a9a9a9;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #cecece">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -11,24 +11,24 @@
         </li>
         <li class="nav-item">
         <%= link_to  "All listings", listings_path, class: "nav-link" %>
-        </li>
-            <a class="nav-link" href="#">Settings</a>
+        <li class="nav-item">
+            <%= link_to  "settings", settings_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Trade</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Chats</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <%= link_to  "pricing", pricing_path, class: "nav-link" %>
         </li>
         <%if memeber_signed_in?%>
         <li class="nav-item">
             <%= link_to  "Create Listing", new_listing_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
+            <%= link_to  "Trade", trade_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
             <%= link_to  "Log Out", destroy_memeber_session_path, method: :delete, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to  "Chat", chat_path, class: "nav-link" %>
         </li>
         <%else%>
         <li class="nav-item">
